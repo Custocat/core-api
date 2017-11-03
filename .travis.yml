@@ -1,14 +1,25 @@
 sudo: required
 
+env:
+  global:
+    - CC_TEST_REPORTER_ID=75449a3b54e3b3c9aa86825bda6846c43aec4770d167b15bffcbdcd305ab1bc8
+
 services:
   - docker
 
+before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
 before_install:
-  - echo '*****START BEFORE INSTALL*****'
   - cp example.env .env
-  - ls
+  - ls -a
   - docker build -t custocat-core-api .
   - docker images
 
 script:
   - docker run -e CMD=test custocat-core-api:latest
+
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
