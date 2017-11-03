@@ -1,0 +1,10 @@
+sudo: required
+
+services:
+  - docker
+
+before-intstall:
+  - docker build -t custocat-core-api .
+
+script:
+  - docker run custocat-core-api
