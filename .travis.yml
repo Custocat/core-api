@@ -4,7 +4,11 @@ services:
   - docker
 
 before-intstall:
+  - echo '*****START BEFORE INSTALL*****'
   - cp example.env .env
+  - ls
+  - docker build -t custocat-core-api .
+  - docker images
 
 script:
-  - docker build -t custocat-core-api .; docker run custocat-core-api
+  - docker run custocat-core-api:latest
