@@ -1,5 +1,7 @@
 # specify the node base image with your desired version node:<version>
 FROM node:latest
+# Set default CMD env to start
+ENV CMD=start
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
@@ -14,4 +16,4 @@ COPY . /usr/src/app/
 # replace this with your application's default port
 EXPOSE 80
 # Start server
-CMD [ "npm", "start" ]
+CMD npm ${CMD}

@@ -1,0 +1,14 @@
+sudo: required
+
+services:
+  - docker
+
+before_install:
+  - echo '*****START BEFORE INSTALL*****'
+  - cp example.env .env
+  - ls
+  - docker build -t custocat-core-api .
+  - docker images
+
+script:
+  - docker run -e CMD=test custocat-core-api:latest

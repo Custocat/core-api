@@ -19,3 +19,7 @@ app.get("/", function (req, res) {
 
 app.listen(env.PORT, env.HOST)
 console.log("Server running on " + env.HOST + ":" + env.PORT + ". Use ctrl+c to stop.")
+
+if (process.argv.slice(2)[0] == 'test') {
+    process.exit(0)
+}
