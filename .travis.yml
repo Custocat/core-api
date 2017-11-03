@@ -4,6 +4,7 @@ services:
   - docker
 
 before-intstall:
+  - cp example.env .env
   - docker build -t custocat-core-api .
 
 script:
